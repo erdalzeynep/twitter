@@ -1,17 +1,23 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+
 from django.template import loader
+
+from app.models import Tweet
 
 
 def home(req):
-    context={}
-   return render(request,  'app/index.html',context)
+    return redirect('/list-tweets')
 
-def list_tweets(request,author)
-    return HttpResponse("You are looking %s user's tweet list" %author)
 
-def add_tweet(request,author,content)
-    return  HttpResponse("You added a new tweet : %s" %content)
+def list_tweets(request):
+    tweet_list = Tweet.objects.all()
+
+    context = {
+        'tweets': tweet_list,
+        'tweet_count': len(tweet_list)
+    }
+    return render(request, 'app/list-tweets.html', context)

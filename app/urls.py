@@ -19,4 +19,5 @@ from app import views
 
 urlpatterns = [
     url(r'^$', views.home),
+    url(r'^list-tweets$', views.list_tweets)
 ]

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Tweets</title>
+    <style>
+        table {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 30%;
+        }
+
+        table td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        table tr:nth-child(even){background-color: #f2f2f2;}
+
+        table tr:hover {background-color: #ddd;}
+
+        table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+{% if tweet_count > 0 %}
+
+{{ tweet_count }} tweet(s) found.
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Author</th>
+        <th>Tweet</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for tweet in tweets %}
+    <tr>
+        <td>{{ tweet.id }}</td>
+        <td>{{ tweet.author }}</td>
+        <td>{{ tweet.content }}</td>
+        <td>{{ tweet.date_and_time }}</td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+{% else %}
+<p>No tweet found.</p>
+{% endif %}
+
+</body>
+</html>
