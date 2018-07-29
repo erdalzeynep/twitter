@@ -10,7 +10,7 @@ class Tweet(models.Model):
     date_and_time = models.DateTimeField(default=datetime.now)
 
 
-class Tweet_Interaction(models.Model):
+class TweetInteraction(models.Model):
     tweet = models.ForeignKey(Tweet, on_delete=models.CASCADE)
     like = models.IntegerField(default=0)
     retweet = models.IntegerField(default=0)
