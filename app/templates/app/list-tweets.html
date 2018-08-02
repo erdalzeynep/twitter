@@ -51,7 +51,7 @@
         <td>{{ tweet.content }}</td>
         <td>{{ tweet.date_and_time }}</td>
         <td>
-            <button type="button" style="width:100%"><a href="/update-tweet">Update Tweet</a></button>
+            <button type="button" style="width:100%"><a href="/update-tweet/{{ tweet.id }}">Update Tweet</a></button>
         </td>
     </tr>
     {% endfor %}
