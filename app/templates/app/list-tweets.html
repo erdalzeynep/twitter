@@ -27,6 +27,8 @@
             color: white;
         }
 
+
+
     </style>
 </head>
 <body>
@@ -36,24 +38,33 @@
 <table>
     <thead>
     <tr>
-        <th>ID</th>
         <th>Author</th>
         <th>Tweet</th>
         <th>Date</th>
+        <th>Update</th>
     </tr>
     </thead>
     <tbody>
     {% for tweet in tweets %}
     <tr>
-        <td>{{ tweet.id }}</td>
         <td>{{ tweet.author }}</td>
         <td>{{ tweet.content }}</td>
         <td>{{ tweet.date_and_time }}</td>
+        <td>
+            <button type="button" style="width:100%"><a href="/update-tweet">Update Tweet</a></button>
+        </td>
     </tr>
     {% endfor %}
 
+    <tr>
+        <td colspan="4">
+            <button type="button" style="width:100%"><a href="/add-tweets">Add Tweet</a></button>
+        </td>
+    </tr>
     </tbody>
 </table>
+<br>
+
 
 {% else %}
 <p>No tweet found.</p>

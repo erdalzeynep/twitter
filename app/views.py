@@ -30,11 +30,12 @@ def add_tweets(request):
             tweet.content = request.POST.get('content')
             tweet.author = request.POST.get('author')
             tweet.save()
-            return render(request, 'app/add-tweets.html')
+            return redirect('/list-tweets')
 
 
     else:
         return render(request, 'app/add-tweets.html')
 
+
 def update_tweet(request):
-    return HttpResponse("Updating Tweet")
+    return HttpResponse("Update Page")
