@@ -37,5 +37,5 @@ def add_tweets(request):
         return render(request, 'app/add-tweets.html')
 
 
-def update_tweet(request):
-    return HttpResponse("Update Page")
+def update_tweet(request, tweet_id):
+    return HttpResponse("Update Page with id %s" % tweet_id)
