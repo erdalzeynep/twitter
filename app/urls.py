@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^$', views.home),
     url(r'^list-tweets$', views.list_tweets),
     url(r'^add-tweets$', views.add_tweets),
-    url(r'^update-tweet/(?P<tweet_id>\d+)$', views.update_tweet)
+    url(r'^update-tweet/(?P<tweet_id>\d+)$', views.update_tweet),
+    url(r'^delete-tweet/(?P<tweet_id>\d+)$', views.delete_tweet)
 ]

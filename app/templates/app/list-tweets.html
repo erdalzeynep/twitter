@@ -7,7 +7,7 @@
         table {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
             border-collapse: collapse;
-            width: 30%;
+            width: 50%;
         }
 
         table td, #customers th {
@@ -27,6 +27,22 @@
             color: white;
         }
 
+        .button {
+          font: bold 11px Arial;
+          font-size: 14px;
+          text-decoration: none;
+          background-color: #EEFFEE;
+          color: #336633;
+          padding: 2px 6px 2px 6px;
+          border-top: 1px solid #CCCCCC;
+          border-right: 1px solid #333333;
+          border-bottom: 1px solid #333333;
+          border-left: 1px solid #CCCCCC;
+          display: block;
+          text-align: center;
+        }
+
+
 
 
     </style>
@@ -42,6 +58,7 @@
         <th>Tweet</th>
         <th>Date</th>
         <th>Update</th>
+        <th>Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -50,15 +67,18 @@
         <td>{{ tweet.author }}</td>
         <td>{{ tweet.content }}</td>
         <td>{{ tweet.date_and_time }}</td>
-        <td>
-            <button type="button" style="width:100%"><a href="/update-tweet/{{ tweet.id }}">Update Tweet</a></button>
+        <td style="width:100px">
+            <a href="/update-tweet/{{ tweet.id }}" class="button">Update Tweet</a>
+        </td>
+         <td style="width:100px">
+            <a href="/delete-tweet/{{ tweet.id }}" class="button">Delete Tweet</a>
         </td>
     </tr>
     {% endfor %}
 
     <tr>
-        <td colspan="4">
-            <button type="button" style="width:100%"><a href="/add-tweets">Add Tweet</a></button>
+        <td colspan="5">
+            <a href="/add-tweets" class="button">Add Tweet</a>
         </td>
     </tr>
     </tbody>

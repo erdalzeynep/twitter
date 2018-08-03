@@ -38,13 +38,22 @@ def add_tweets(request):
 def update_tweet(request, tweet_id):
     if request.method == 'GET':
         tweet = get_object_or_404(Tweet, pk=tweet_id)
-        context = {
-            'tweet': tweet
-        }
-        return render(request, 'app/update-tweet.html', context)
+        return render(request, 'app/update-tweet.html', {'tweet': tweet})
     else:
         tweet = get_object_or_404(Tweet, pk=tweet_id)
         tweet.content = request.POST.get('content')
         tweet.author = request.POST.get('author')
         tweet.save()
         return redirect('/list-tweets')
+
+
+def delete_tweet(request, tweet_id):
+    if request.method == 'POST':
+        tweet = get_object_or_404(Tweet, pk=tweet_id)
+        tweet.delete()
+        return redirect('/list-tweets')
+
+    else:
+
+        tweet = get_object_or_404(Tweet, pk=tweet_id)
+        return render(request, 'app/delete-tweet.html', {'tweet': tweet})
