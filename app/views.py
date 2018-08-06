@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 
 from django.template import loader
+from django.contrib.auth.models import User
 
 from app.models import Tweet
 
@@ -57,3 +58,17 @@ def delete_tweet(request, tweet_id):
 
         tweet = get_object_or_404(Tweet, pk=tweet_id)
         return render(request, 'app/delete-tweet.html', {'tweet': tweet})
+
+
+def login(request):
+    if request.method == 'POST':
+        if request.POST.get('username') and request.POST.get('password') and request.POST.get('email'):
+            input_username = request.POST.get('username')
+            input_password = request.POST.get('password')
+            input_email = request.POST.get('email')
+            user = User.objects.create_user(input_username, input_email, input_password)
+            user.save()
+            return redirect('/list-tweets')
+    else:
+
+        return render(request, 'app/login.html')
