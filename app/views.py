@@ -12,21 +12,22 @@ from app.models import Tweet
 
 
 def home(req):
-    return redirect('/login-page')
+    return redirect('/list-tweets')
 
 
 def list_tweets(request):
     username = None
     if request.user.is_authenticated():
         username = request.user.username
-    tweet_list = Tweet.objects.filter(author=username)
+        tweet_list = Tweet.objects.filter(author=username)
 
-    context = {
-        'tweets': tweet_list,
-        'tweet_count': len(tweet_list)
-    }
-    return render(request, 'app/list-tweets.html', context)
-
+        context = {
+            'tweets': tweet_list,
+            'tweet_count': len(tweet_list)
+        }
+        return render(request, 'app/list-tweets.html', context)
+    else:
+        return  redirect('/login-page')
 
 def add_tweets(request):
     if request.method == 'POST':
@@ -97,6 +98,5 @@ def login_page(request):
 
 
 def logout_page(request):
-
     logout(request)
     return redirect('/login-page')
