@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^add-tweets$', views.add_tweets),
     url(r'^signup$', views.signup),
     url(r'^login-page$', views.login_page),
+    url(r'^logout-page$', views.logout_page),
     url(r'^update-tweet/(?P<tweet_id>\d+)$', views.update_tweet),
     url(r'^delete-tweet/(?P<tweet_id>\d+)$', views.delete_tweet)
 ]

@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 from django.template import loader
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from app.models import Tweet
 
@@ -94,3 +94,9 @@ def login_page(request):
                 return redirect('/signup')
     else:
         return render(request, 'app/login-page.html')
+
+
+def logout_page(request):
+
+    logout(request)
+    return redirect('/login-page')
