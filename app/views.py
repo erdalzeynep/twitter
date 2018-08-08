@@ -12,7 +12,7 @@ from app.models import Tweet
 
 
 def home(req):
-    return redirect('/list-tweets')
+    return redirect('/login-page')
 
 
 def list_tweets(request):
