@@ -16,7 +16,6 @@ def home(req):
 
 
 def list_tweets(request):
-    username = None
     if request.user.is_authenticated():
         username = request.user.username
         tweet_list = Tweet.objects.filter(author=username)
@@ -27,7 +26,8 @@ def list_tweets(request):
         }
         return render(request, 'app/list-tweets.html', context)
     else:
-        return  redirect('/login-page')
+        return redirect('/login-page')
+
 
 def add_tweets(request):
     if request.method == 'POST':
@@ -54,15 +54,10 @@ def update_tweet(request, tweet_id):
 
 
 def delete_tweet(request, tweet_id):
-    if request.method == 'POST':
-        tweet = get_object_or_404(Tweet, pk=tweet_id)
-        tweet.delete()
-        return redirect('/list-tweets')
+    tweet = get_object_or_404(Tweet, pk=tweet_id)
+    tweet.delete()
+    return redirect('/list-tweets')
 
-    else:
-
-        tweet = get_object_or_404(Tweet, pk=tweet_id)
-        return render(request, 'app/delete-tweet.html', {'tweet': tweet})
 
 
 def signup(request):
