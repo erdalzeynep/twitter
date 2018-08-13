@@ -7,7 +7,10 @@
         table {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
             border-collapse: collapse;
-            width: 50%;
+            width: 70%;
+
+            margin-left:1px ;
+            margin-right: 1px;
         }
 
         table td, #customers th {
@@ -43,15 +46,14 @@
         }
 
 
-
-
     </style>
 </head>
 <body>
 <a href="/logout-page" class="button" style="float: right;">Logout</a>
+<h1>Tweet List</h1>
 {% if tweet_count > 0 %}
 
-{{ tweet_count }} tweet(s) found.
+{{ tweet_count }} tweet(s) found.<br><br>
 <table>
     <thead>
     <tr>
@@ -71,7 +73,7 @@
         <td style="width:100px">
             <a href="/update-tweet/{{ tweet.id }}" class="button">Update Tweet</a>
         </td>
-         <td style="width:100px">
+        <td style="width:100px">
             <a href="/delete-tweet/{{ tweet.id }}" class="button">Delete Tweet</a>
         </td>
     </tr>

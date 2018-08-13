@@ -3,15 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+    textarea{
+    width: 50%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+     display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .button {
+          font: bold 11px Arial;
+          font-size: 14px;
+          text-decoration: none;
+          background-color: #EEFFEE;
+          color: #336633;
+          padding: 2px 6px 2px 6px;
+          border-top: 1px solid #CCCCCC;
+          border-right: 1px solid #333333;
+          border-bottom: 1px solid #333333;
+          border-left: 1px solid #CCCCCC;
+          display: block;
+          text-align: center;
+        }
+
+
+    </style>
 </head>
 <body>
+<h1 align="center">New Tweet</h1>
 <form action="" method="POST">
     {% csrf_token %}
-    Author:<br>
-    <input type="text" name="author"><br>
-    Tweet:<br>
-    <input type="text" name="content"><br>
-    <input type="submit" name="sendtweet">
+    <textarea name="content"></textarea>
+
+    <<input type="submit" class="button" value="SEND">
+
 </form>
 </body>
 </html>
