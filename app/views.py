@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
 from app.models import Tweet
+from .forms import AddTweetForm, UpdateTweetForm
 
 
 def home(req):
@@ -31,15 +32,16 @@ def list_tweets(request):
 def add_tweets(request):
     if request.user.is_authenticated():
         if request.method == 'POST':
-            if request.POST.get('content'):
-                tweet = Tweet()
-                tweet.content = request.POST.get('content')
-                tweet.author = request.user.username
-                tweet.save()
-                return redirect('/list-tweets')
-        else:
+            form = AddTweetForm(request.user.username, request.POST)
 
-            return render(request, 'app/add-tweets.html')
+            if form.is_valid():
+                form.save()
+                return redirect('/list-tweets')
+            else:
+                return render(request, 'app/add-tweets.html', {'form': form})
+        else:
+            form = AddTweetForm(request.user.username)
+            return render(request, 'app/add-tweets.html', {'form': form})
 
     else:
         return redirect('/login-page')
@@ -47,15 +49,21 @@ def add_tweets(request):
 
 def update_tweet(request, tweet_id):
     if request.user.is_authenticated():
-        if request.method == 'GET':
-            tweet = get_object_or_404(Tweet, pk=tweet_id)
-            return render(request, 'app/update-tweet.html', {'tweet': tweet})
+        tweet = get_object_or_404(Tweet, pk=tweet_id)
+
+        if request.method == 'POST':
+            form = UpdateTweetForm(request.POST, instance=tweet)
+
+            if form.is_valid():
+                form.save()
+                return redirect('/list-tweets')
+
+            else:
+                return render(request, 'app/update-tweet.html', {'form': form})
+
         else:
-            tweet = get_object_or_404(Tweet, pk=tweet_id)
-            tweet.content = request.POST.get('content')
-            tweet.author = request.POST.get('author')
-            tweet.save()
-            return redirect('/list-tweets')
+            form = UpdateTweetForm(instance=tweet)
+            return render(request, 'app/update-tweet.html', {'form': form})
     else:
         return redirect('/login-page')
 

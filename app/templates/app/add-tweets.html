@@ -41,8 +41,7 @@
 <h1 align="center">New Tweet</h1>
 <form action="" method="POST">
     {% csrf_token %}
-    <textarea name="content"></textarea>
-
+    {{ form }}
     <<input type="submit" class="button" value="SEND">
 
 </form>

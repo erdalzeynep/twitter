@@ -7,10 +7,8 @@
 <body>
 <form action="" method="POST">
     {% csrf_token %}
-    Author:<br>
-    <input type="text" name="author" value="{{tweet.author}}"><br>
-    Tweet:<br>
-    <input type="text" name="content" value="{{tweet.content}}"><br>
+     {{ form }}
+
     <input type="submit" name="sendtweet">
 </form>
 </body>
